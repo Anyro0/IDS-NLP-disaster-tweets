@@ -12,3 +12,21 @@ Goal 3: Understand the basics of language models well enough to explain it to an
 
 
 Team: Robyn Tomson and Otto-Cristofer Vanasaun
+
+
+## Integrating  git into jupyter notebook
+
+1. Install the JupyterLab Git extension
+   ```bash
+   pip install jupyterlab-git
+    ```
+
+2. Enable the extension
+   ```bash
+   jupyter lab build
+    ```
+
+3. Start JupyterLab (integrated git dosn't work with jupyter notebook)
+   ```bas
+   jupyter lab
+    ```
