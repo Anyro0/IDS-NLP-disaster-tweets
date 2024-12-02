@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDS-NLP-disaster-tweets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Input a tweet to be analysed</h2>
+        <p>Homemade machine that tries to make an accurate decision whether text is about natural disasters or not.</p>
+        <textarea id="inputText" placeholder="Enter some text"></textarea>
+        <br>
+        <button onclick="calculateIfIsDisaster()">Show Result</button>
+        <div id="output"></div>
+    </div>
+
+    <!--
+    <script>
+        async function calculateIfIsDisaster() {
+            const userInput = document.getElementById("inputText").value.trim();
+            
+            if (!userInput) {
+                document.getElementById("output").innerText = "Please enter a tweet.";
+                return;
+            }
+            
+            // Send the tweet to the Flask server for prediction
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: userInput }),
+            });
+
+            const result = await response.json();
+            
+            // Handle errors from the backend
+            if (result.error) {
+                document.getElementById("output").innerText = `Error: ${result.error}`;
+                return;
+            }
+
+            // Display the prediction result from the model
+            if (result.prediction === 1) {
+                document.getElementById("output").innerText = "This tweet seems to be about a natural disaster.";
+            } else {
+                document.getElementById("output").innerText = "This tweet does not seem to be about a natural disaster.";
+            }
+        }
+    </script>
+    -->
+
+    <script>
+        function calculateIfIsDisaster() {
+            var userInput = document.getElementById("inputText").value.toLowerCase();
+            var isDisaster = true;
+            
+            if (isDisaster) {
+                document.getElementById("output").innerText = "This tweet seems to be about a natural disaster.";
+            } else {
+                document.getElementById("output").innerText = "This tweet does not seem to be about a natural disaster.";
+            }
+        }
+    </script>
+
+</body>
+</html>
