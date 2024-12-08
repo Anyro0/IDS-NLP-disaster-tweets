@@ -1,6 +1,6 @@
 # Repository Guide
 
-Welcome to this repository! This guide outlines the contents of the repository and provides step-by-step instructions for replicating the analysis.
+Welcome to this repository! This guide outlines the contents of the repository and provides instructions for replicating the analysis.
 
 ## Table of Contents
 1. [Overview](#overview)
