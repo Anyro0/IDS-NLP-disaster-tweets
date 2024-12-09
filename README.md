@@ -40,7 +40,9 @@ Here’s a quick overview of the directory structure:
 ├── webpage/                 # Files related to the project's webpage
 ├── E2_report.pdf            # Report detailing the project
 ├── Model.ipynb              # Jupyter notebook implementing the model and data analysis
-└── README.md                # Project overview and instructions
+├── README.md                # Project overview and instructions
+└── plots.ipynb              # Jupyter notebook implementing plots and graphics
+
 ```
 
 ___
