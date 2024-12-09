@@ -5,7 +5,9 @@ Make sure Python is installed on your system.
 To check if Python is installed, run:
 ```bash
 python --version
-# Or on some systems:
+```
+Or on some systems:
+```bash
 python3 --version
 ```
 ## 2. Set Up a Virtual Environment
@@ -61,11 +63,11 @@ This will automatically install all the required packages.
 
 Once the dependencies are installed, the app is ready to launch. You can start the Flask app by running:
 ```bash
-python app.py
+python disasterApp.py
 ```
 Or if you use python3:
 ```bash
-python3 app.py
+python3 disasterApp.py
 ```
 
 This will start the Flask development server. You should see output like:
