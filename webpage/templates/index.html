@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDS-NLP-disaster-tweets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Input a tweet to be analysed</h2>
+        <p>Homemade machine that tries to make an accurate decision whether text is about natural disasters or not.</p>
+        <textarea id="inputText" placeholder="Enter some text"></textarea>
+        <br>
+        <button onclick="calculateIfIsDisaster()">Show Result</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        async function calculateIfIsDisaster() {
+            const userInput = document.getElementById("inputText").value.trim();
+            if (!userInput) {
+                document.getElementById("output").innerText = "Please enter a tweet.";
+                return;
+            }
+    
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input_text: userInput })  
+            });
+    
+            const result = await response.json();  
+    
+            if (result.prediction === 1) {
+                let outputMessage = "This tweet seems to be about a natural disaster.";
+                if (result.matched_disasters && result.matched_disasters.length > 0) {
+                    outputMessage += `\nDisasters: ${result.matched_disasters.join(', ')}`;
+                }
+                document.getElementById("output").innerText = outputMessage;
+            } else if (result.prediction === 0) {
+                document.getElementById("output").innerText = "This tweet does not seem to be about a natural disaster.";
+            } else {
+                let outputMessage = "Whoops! The gremlins in the system got a little too excited!";
+                document.getElementById("output").innerText = outputMessage;
+            }
+        }
+    </script>
+
+</body>
+</html>
