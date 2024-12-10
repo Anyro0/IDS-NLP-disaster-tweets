@@ -20,6 +20,7 @@
     <script>
         async function calculateIfIsDisaster() {
             const userInput = document.getElementById("inputText").value.trim();
+            document.getElementById("output").innerText = "Guestimating the line vibes";
             if (!userInput) {
                 document.getElementById("output").innerText = "Please enter a tweet.";
                 return;
@@ -32,7 +33,8 @@
                 },
                 body: JSON.stringify({ input_text: userInput })  
             });
-    
+
+
             const result = await response.json();  
     
             if (result.prediction === 1) {
