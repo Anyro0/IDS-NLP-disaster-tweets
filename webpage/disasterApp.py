@@ -66,20 +66,24 @@ def predict():
             return jsonify({"error": "No input text provided"}), 400
         
         # Preprocess and pad the input
-        padded_data = preprocess_input(input_data)
+        input_data = {'text': input_data}
+        input_df = pd.DataFrame(data=[input_data])
+        padded_data = preprocess_input(input_df)
 
         # Get prediction from the model
+        #print((len(padded_data)))
+        #print((len(padded_data[0])))
         prediction = model.predict(padded_data)
         print(f"Prediction shape: {prediction.shape}")
         print(f"Prediction values: {prediction}")
 
         # Assuming binary classification, convert the prediction to a class (0 or 1)
-        predicted_class = 1 if prediction[-1][0] > 0.5 else 0
+        predicted_class = 1 if prediction[0][1] > 0.5 else 0
         print(f"Predicted class: {predicted_class}")
 
 
         # Process the input text to match disaster keywords
-        input_words = set(input_data.lower().split())
+        input_words = set(input_data['text'].lower().split())
         matched_disasters = input_words.intersection(disaster_names)
         
         if matched_disasters:
@@ -93,21 +97,26 @@ def predict():
 
 def tokenize_and_prepare(data, max_length=512):
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    data = data.split(' ')
-    tokens = [tokenizer.encode(text, add_special_tokens=True, max_length=max_length, truncation=True) for text in data]
-    token_sequences = keras.preprocessing.sequence.pad_sequences(tokens, maxlen=max_length, padding='post')
+    data['tokens'] = data['text'].apply(lambda x: tokenizer.encode(x, add_special_tokens=True, max_length=max_length, truncation=True))
+    token_sequences = keras.preprocessing.sequence.pad_sequences(data['tokens'], maxlen=max_length, padding='post')
     return token_sequences
 
-def preprocess_input(input_text):
+def preprocess_input(input_df):
     # Preprocess the input text as you did earlier
     # Example: Remove unwanted characters, stopwords, lemmatize, etc.
-    preprocessed_text = preprocess_text(input_text)
-    print(preprocessed_text)
+    input_df['text'] = input_df['text'].apply(preprocess_text)
     # Convert the preprocessed text into sequences using the fitted tokenizer
     #encoded_data = tokenizer.texts_to_sequences([preprocessed_text])
     #padded_data = keras.preprocessing.sequence.pad_sequences(encoded_data, padding='post', maxlen=128)
-    padded_data = tokenize_and_prepare(preprocessed_text)
-    return padded_data
+    #tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+    #max_len = 1400
+    #padded_data = keras.preprocessing.sequence.pad_sequences(tokenized_data, maxlen=max_length, padding='post')
+    input_sequences = tokenize_and_prepare(input_df)
+   # input_sequences = pad_sequences(
+    #input_df['text'].apply(lambda x: tokenizer.encode(x, add_special_tokens=True, max_length=max_len, truncation=True)),
+    #maxlen=max_len, padding='post'
+    #)
+    return input_sequences
 
 def preprocess_text(text):
     # Remove links, special characters, mentions, hashtags, and numbers
