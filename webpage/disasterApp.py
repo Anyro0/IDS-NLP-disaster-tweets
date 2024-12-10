@@ -33,7 +33,7 @@ tokenizer = keras.preprocessing.text.Tokenizer(num_words=31924)  # Adjust number
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Model path and disaster names path relative to the current file
-model_path = os.path.join(BASE_DIR, 'res', 'modelLSTM.h5')
+model_path = os.path.join(BASE_DIR, 'res', 'modelLSTM2.h5')
 disaster_names_path = os.path.join(BASE_DIR, 'res', 'disasterNames.json')
 
 csv_path =  os.path.join(BASE_DIR, 'res', 'train.csv')
