@@ -10,7 +10,7 @@
 
     <div class="container">
         <h2>Input a tweet to be analysed</h2>
-        <p>Homemade machine that tries to make an accurate decision whether text is about natural disasters or not.</p>
+        <p>Homemade machine that tries to make an accurate decision whether text is about disasters or not.</p>
         <textarea id="inputText" placeholder="Enter some text"></textarea>
         <br>
         <button onclick="calculateIfIsDisaster()">Show Result</button>
@@ -38,13 +38,13 @@
             const result = await response.json();  
     
             if (result.prediction === 1) {
-                let outputMessage = "This tweet seems to be about a natural disaster.";
+                let outputMessage = "This tweet seems to be about a disaster.";
                 if (result.matched_disasters && result.matched_disasters.length > 0) {
                     outputMessage += `\nDisasters: ${result.matched_disasters.join(', ')}`;
                 }
                 document.getElementById("output").innerText = outputMessage;
             } else if (result.prediction === 0) {
-                document.getElementById("output").innerText = "This tweet does not seem to be about a natural disaster.";
+                document.getElementById("output").innerText = "This tweet does not seem to be about a disaster.";
             } else {
                 let outputMessage = "Whoops! The gremlins in the system got a little too excited!";
                 document.getElementById("output").innerText = outputMessage;
