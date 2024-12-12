@@ -63,7 +63,7 @@ ___
 
 ## Expected Results
 
-#### NLP Model Performance
+#### NLP Model Performance (on validation data)
 
 - **Accuracy:** 0.7682
 - **Precision:** 0.7222 
