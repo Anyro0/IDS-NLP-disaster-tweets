@@ -65,9 +65,10 @@ ___
 
 #### NLP Model Performance
 
-- **Accuracy:** 0.7846
-- **Precision:** 0.7891 
-- **Recall:** 0.7275
+- **Accuracy:** 0.7682
+- **Precision:** 0.7222 
+- **Recall:** 0.7411
+- **F1-measure:** 0.7316
 
 
 
