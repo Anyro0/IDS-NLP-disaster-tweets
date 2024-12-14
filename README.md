@@ -80,5 +80,5 @@ ___
 
 A big thank you to all the amazing contributors who make this project better every day! 
 
-[View Contributors](https://github.com/Otto-Cristofer-Vanasaun/IDS-NLP-disaster-tweets/graphs/contributors)
+[View Contributors](https://github.com/Anyro0/IDS-NLP-disaster-tweets/graphs/contributors)
 
